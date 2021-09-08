@@ -18,7 +18,6 @@ import type {
 } from 'https';
 import type {InspectOptions} from 'util';
 import is, {assert} from '@sindresorhus/is';
-import lowercaseKeys from 'lowercase-keys';
 import CacheableLookup from 'cacheable-lookup';
 import http2wrapper, {ClientHttp2Session} from 'http2-wrapper';
 import {isFormDataLike} from 'form-data-encoder';
@@ -1797,9 +1796,9 @@ export default class Options {
 		assert.plainObject(value);
 
 		if (this._merging) {
-			Object.assign(this._internals.headers, lowercaseKeys(value));
+			Object.assign(this._internals.headers, value);
 		} else {
-			this._internals.headers = lowercaseKeys(value);
+			this._internals.headers = value;
 		}
 	}
 
