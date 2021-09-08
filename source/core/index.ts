@@ -13,7 +13,6 @@ import CacheableRequest = require('cacheable-request');
 import decompressResponse = require('decompress-response');
 // @ts-expect-error Missing types
 import http2wrapper = require('http2-wrapper');
-import lowercaseKeys = require('lowercase-keys');
 import ResponseLike = require('responselike');
 import is, {assert} from '@sindresorhus/is';
 import getBodySize from './utils/get-body-size';
@@ -1566,7 +1565,7 @@ export default class Request extends Duplex implements RequestEvents<Request> {
 		if (options.headers === defaults?.headers) {
 			options.headers = {...options.headers};
 		} else {
-			options.headers = lowercaseKeys({...(defaults?.headers), ...options.headers});
+			options.headers = {...(defaults?.headers), ...options.headers};
 		}
 
 		// Disallow legacy `url.Url`
